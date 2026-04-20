@@ -49,9 +49,7 @@ The fastest way to get ThothCloud up and running. This script handles both the b
 python start.py
 ```
 
-### 🛠️ Option 2: Manual Full-Stack Setup
-<details>
-<summary>View Manual Instructions</summary>
+### 🛠️ Manual Full-Stack Setup
 
 **Backend (Python):**
 ```bash
@@ -71,7 +69,6 @@ cd frontend
 npm install
 npm run dev
 ```
-</details>
 
 ---
 
