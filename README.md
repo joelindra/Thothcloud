@@ -3,6 +3,7 @@
 <img width="1458" height="1068" alt="image" src="https://github.com/user-attachments/assets/799baf67-822d-42d2-b33f-37335288ddb0" />
 
 # 🪐 ThothCloud
+
 ### **The Sovereign Private Cloud & Forensic Data Governance Suite**
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com)
@@ -23,27 +24,51 @@
 ## ✨ Key Capabilities
 
 ### 🛡️ Forensic Security & Integrity
-*   **Argon2id Hashing:** Utilizing industry-best standards for password entropy and protection.
-*   **Stateless JWT Security:** High-entropy tokenization with secure rotation and expiration policies.
-*   **Audit Sentinel:** Deep activity tracking records every action (Login, IP, Timestamp, User context) for forensic accountability.
-*   **Secure Isolation:** Directory-level locking and recursive permission validation.
+
+* **Argon2id Hashing:** Utilizing industry-best standards for password entropy and protection.
+* **Stateless JWT Security:** High-entropy tokenization with secure rotation and expiration policies.
+* **Audit Sentinel:** Deep activity tracking records every action (Login, IP, Timestamp, User context) for forensic accountability.
+* **Secure Isolation:** Directory-level locking and recursive permission validation.
 
 ### ⚡ Professional Performance
-*   **Atomic Chunked Uploads:** Handle multi-GB files with ease via segmented uploads, parallel processing, and resilient reassembly.
-*   **Media Engine:** Real-time **FFmpeg Transcoding** allows for fluid media streaming even on low-bandwidth connections.
-*   **Async Core:** Driven by a high-concurrency event loop, optimized for both high-end servers and low-power ARM devices.
+
+* **Atomic Chunked Uploads:** Handle multi-GB files with ease via segmented uploads, parallel processing, and resilient reassembly.
+* **Media Engine:** Real-time **FFmpeg Transcoding** allows for fluid media streaming even on low-bandwidth connections.
+* **Async Core:** Driven by a high-concurrency event loop, optimized for both high-end servers and low-power ARM devices.
 
 ### 🎨 Premium User Experience
-*   **Fluid Glassmorphism:** A multi-layered, interactive interface designed for modern aesthetics and reduced cognitive load.
-*   **Dynamic Theme Engine:** Instant transitions between *Cyber Dark*, *Stellar White*, and *High Contrast* modes.
-*   **Advanced Media Suite:** Native support for 4K video, lossless audio (FLAC/WAV), PDF rendering, and high-fidelity image previews.
+
+* **Fluid Glassmorphism:** A multi-layered, interactive interface designed for modern aesthetics and reduced cognitive load.
+* **Dynamic Theme Engine:** Instant transitions between *Cyber Dark*, *Stellar White*, and *High Contrast* modes.
+* **Advanced Media Suite:** Native support for 4K video, lossless audio (FLAC/WAV), PDF rendering, and high-fidelity image previews.
+
+---
+
+## 🛠️ Technology Stack
+
+| Component | Technology | Role |
+| :--- | :--- | :--- |
+| **Backend** | Python 3.10+ / FastAPI | Core logic, API routing, and async processing. |
+| **Frontend** | React 18 / Vite | modern, responsive, and theme-aware dashboard. |
+| **Database** | SQLite / SQLAlchemy | Relational data management with ACID compliance. |
+| **Styling** | Tailwind CSS 4 | Atomic utility design with custom glassmorphism. |
+| **Media** | FFmpeg | Real-time video processing and transcoding. |
+| **Security** | Argon2 / JWT | Industry-standard hashing and stateless auth. |
 
 ---
 
 ## 🚀 Deployment Options
 
+### 📋 Prerequisites
+
+Before starting, ensure you have the following installed:
+- **Python 3.10+**
+- **Node.js 18+**
+- **FFmpeg** (For media streaming features)
+
 ### 🐍 Recommended: Native Python Runner
-The fastest way to get ThothCloud up and running. This script handles both the backend and frontend development servers.
+
+The fastest way to get ThothCloud up and running. This script handles virtual environments, dependency installation (on first run), and starts both servers.
 
 ```bash
 python start.py
@@ -52,18 +77,22 @@ python start.py
 ### 🛠️ Manual Full-Stack Setup
 
 **Backend (Python):**
+
 ```bash
 cd backend
 python -m venv venv
+
 # Windows:
 .\venv\Scripts\activate
 # Linux/Mac:
 source venv/bin/activate
+
 pip install -r requirements.txt
-uvicorn main:app --reload
+uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 **Frontend (React/Vite):**
+
 ```bash
 cd frontend
 npm install
@@ -81,7 +110,7 @@ npm run dev
 | `/files/upload-chunk`| `POST`| User | Multi-threaded segmented large file transfer. |
 | `/files/stream/{id}` | `GET` | User | Low-latency streaming with transcoding (`quality=720p`). |
 | `/share/{uuid}` | `GET` | Public | High-speed access to shared Uplinks. |
-| `/settings/pick-folder`|`GET` | Admin | Remote directory selection via secure system bridge. |
+| `/settings/` | `GET/PATCH` | Admin | System-wide configuration management. |
 
 ---
 
@@ -89,14 +118,15 @@ npm run dev
 
 ```text
 ├── backend/            # FastAPI Async Engine & Logic Core
-│   ├── modules/        # Domain logic (Auth, File Management, Sharing)
-│   ├── database.py     # SQLAlchemy ORM & Data Layer
+│   ├── auth.py         # Authentication & Encryption logic
+│   ├── files.py        # File management & Chunking engine
+│   ├── main.py         # Entry point & API orchestration
 │   ├── models.py       # DB Schemas & Forensic Audit Definitions
 │   └── requirements.txt# Python dependencies
 ├── frontend/           # React + Vite Professional UI
 │   ├── src/components/ # Modular, theme-aware UI components
-│   ├── src/index.css   # Glassmorphic Design System tokens
-│   └── package.json    # Node.js dependencies
+│   ├── src/api.js      # Centralized Axios configuration
+│   └── index.css       # Design System tokens
 ├── storage/            # Physical Data Isolation Node
 └── start.py            # Unified Python orchestrator
 ```
@@ -105,6 +135,14 @@ npm run dev
 
 ## 🤝 Community & Support
 
-*   **Contribute:** Please review the [**Contributing Guidelines**](./CONTRIBUTING.md) before submitting PRs.
-*   **Issues:** Report bugs or request features via the GitHub Issues tab.
-*   **License:** Hosted under the ThothCloud Open-Sovereign License.
+* **Contribute:** Please review the [**Contributing Guidelines**](./CONTRIBUTING.md) before submitting PRs.
+* **Issues:** Report bugs or request features via the GitHub Issues tab.
+* **License:** Hosted under the ThothCloud Open-Sovereign License.
+
+---
+
+<div align="center">
+
+**Built for Sovereignty. Optimized for Performance.**
+
+</div>
