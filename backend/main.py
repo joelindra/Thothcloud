@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import models
-from database import engine, init_db
+from database import engine, SessionLocal
 import auth_routes
 import files
 import share_routes
@@ -18,6 +18,34 @@ load_dotenv()
 
 # Initialize database
 models.Base.metadata.create_all(bind=engine)
+
+def seed_settings():
+    db = SessionLocal()
+    try:
+        from models import SystemSetting
+        defaults = [
+            {"key": "ui_theme", "value": "Deep-Blue", "category": "appearance", "description": "Global visual theme for the neural interface"},
+            {"key": "ui_animations", "value": "true", "category": "appearance", "description": "Enable motion effects and transitions"},
+            {"key": "ui_density", "value": "Comfortable", "category": "appearance", "description": "Information density of the layout"},
+            {"key": "chunk_size_mb", "value": "5", "category": "transmission", "description": "Size of each data fragment during upload"},
+            {"key": "upload_retries", "value": "3", "category": "transmission", "description": "Maximum reconnection attempts for failed fragments"},
+            {"key": "assembly_priority", "value": "Normal", "category": "transmission", "description": "System priority for file re-assembly tasks"},
+            {"key": "storage_path", "value": "./storage", "category": "governance", "description": "Root directory for encrypted asset storage"},
+            {"key": "max_file_size_gb", "value": "10", "category": "governance", "description": "Maximum size for a single binary object"},
+            {"key": "trash_retention_days", "value": "30", "category": "governance", "description": "Buffer period before permanent data erasure"},
+            {"key": "login_rate_limit", "value": "5/minute", "category": "security", "description": "Maximum uplink attempts before lock-out"},
+            {"key": "session_timeout_hours", "value": "24", "category": "security", "description": "Authentication token lifespan"},
+            {"key": "log_level", "value": "Detailed", "category": "security", "description": "Granularity of the security audit log"}
+        ]
+        for d in defaults:
+            exists = db.query(SystemSetting).filter(SystemSetting.key == d["key"]).first()
+            if not exists:
+                db.add(SystemSetting(**d))
+        db.commit()
+    finally:
+        db.close()
+
+seed_settings()
 
 app = FastAPI(title="ThothCloud API")
 app.state.limiter = limiter
