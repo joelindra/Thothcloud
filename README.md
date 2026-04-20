@@ -98,7 +98,6 @@ npm run dev
 │   ├── src/index.css   # Glassmorphic Design System tokens
 │   └── package.json    # Node.js dependencies
 ├── storage/            # Physical Data Isolation Node
-├── docker-compose.yml  # Multi-container orchestration
 └── start.py            # Unified Python orchestrator
 ```
 
