@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+:root {
+  --thoth-bg: #030303;
+  --thoth-card: #0a0a0a;
+  --thoth-primary: #3b82f6;
+  --thoth-secondary: #2563eb;
+  --thoth-accent: #60a5fa;
+  --thoth-glow: rgba(59, 130, 246, 0.5);
+  --thoth-surface: #111111;
+  --thoth-border: rgba(255, 255, 255, 0.05);
+  --thoth-text: #ffffff;
+  --thoth-text-dim: #9ca3af;
+  --thoth-blur: 16px;
+  color-scheme: dark;
+}
+
+.theme-light {
+  --thoth-bg: #f5f7fa;
+  --thoth-card: #ffffff;
+  --thoth-primary: #3b82f6;
+  --thoth-secondary: #2563eb;
+  --thoth-accent: #1d4ed8;
+  --thoth-glow: rgba(59, 130, 246, 0.15);
+  --thoth-surface: #ffffff;
+  --thoth-border: rgba(0, 0, 0, 0.06);
+  --thoth-text: #0f172a;
+  --thoth-text-dim: #64748b;
+  --thoth-blur: 8px;
+  color-scheme: light;
+}
+
+.theme-deep-blue {
+  --thoth-bg: #050b18;
+  --thoth-card: #0a1122;
+  --thoth-primary: #60a5fa;
+  --thoth-secondary: #3b82f6;
+  --thoth-glow: rgba(96, 165, 250, 0.4);
+}
+
+
+.animations-off * {
+  transition: none !important;
+  animation: none !important;
+  backdrop-filter: none !important;
+}
+
+@theme {
+  --color-thoth-bg: var(--thoth-bg);
+  --color-thoth-card: var(--thoth-card);
+  --color-thoth-primary: var(--thoth-primary);
+  --color-thoth-secondary: var(--thoth-secondary);
+  --color-thoth-accent: var(--thoth-accent);
+  --color-thoth-glow: var(--thoth-glow);
+  --color-thoth-surface: var(--thoth-surface);
+  --color-thoth-text: var(--thoth-text);
+  --color-thoth-text-dim: var(--thoth-text-dim);
+}
+
+body {
+  @apply bg-thoth-bg text-thoth-text min-h-screen overflow-x-hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.03) 0px, transparent 50%);
+}
+
+.glass {
+  @apply border;
+  background-color: color-mix(in srgb, var(--thoth-card), transparent 60%);
+  backdrop-filter: blur(var(--thoth-blur));
+  border-color: var(--thoth-border);
+}
+
+.glass-card {
+  @apply backdrop-blur-md border shadow-2xl rounded-3xl transition-all duration-300;
+  background-color: color-mix(in srgb, var(--thoth-card), transparent 10%);
+  border-color: var(--thoth-border);
+}
+
+.glass-card:hover {
+  @apply border-thoth-primary/20;
+  background-color: color-mix(in srgb, var(--thoth-card), transparent 5%);
+}
+
+.input-field {
+  @apply w-full border rounded-2xl py-3 px-5 focus:outline-none focus:ring-2 focus:ring-thoth-primary/50 transition-all font-medium;
+  background-color: color-mix(in srgb, var(--thoth-text), transparent 97%);
+  border-color: var(--thoth-border);
+  color: var(--thoth-text);
+}
+.input-field::placeholder {
+  color: var(--thoth-text-dim);
+  opacity: 0.6;
+}
+
+.btn-primary {
+  @apply bg-thoth-primary hover:bg-thoth-secondary text-white font-bold py-3 px-8 rounded-2xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-thoth-primary/30 flex items-center justify-center gap-2;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  transition: all 0.2s;
+  background-color: color-mix(in srgb, var(--thoth-text), transparent 90%);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--thoth-text), transparent 75%);
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+  100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.2); }
+}
+
+.glow-on-hover:hover {
+  animation: pulse-glow 2s infinite;
+}
+
