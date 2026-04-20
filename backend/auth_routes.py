@@ -17,7 +17,7 @@ async def register(request: Request, user: schemas.UserCreate, db: Session = Dep
         raise HTTPException(status_code=400, detail="Username already registered")
     
     hashed_password = auth.get_password_hash(user.password)
-    new_user = models.User(username=user.username, hashed_password=hashed_password)
+    new_user = models.User(username=user.username, hashed_password=hashed_password, role="admin")
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
