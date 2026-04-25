@@ -283,7 +283,7 @@ const FileExplorer = ({ folderId, onFolderChange, mode = 'all', folderName = 'Ho
 
   const handleDownload = (id, name) => {
     const token = localStorage.getItem('token');
-    window.open(`http://${window.location.hostname}:8000/files/download/${id}?token=${token}`, '_blank');
+    window.open(`${window.location.origin}/api/files/download/${id}?token=${token}`, '_blank');
   };
 
   const formatSize = (bytes) => {
