@@ -32,7 +32,7 @@ const ShareModal = ({ file, onClose }) => {
             expires_at: expiryDate.toISOString()
         });
 
-        const backendUrl = `http://${window.location.hostname}:8000`;
+        const backendUrl = `${window.location.origin}/api`;
         const fullLink = `${backendUrl}/share/download/${res.data.uuid}`;
         setShareLink(fullLink);
     } catch (err) {
